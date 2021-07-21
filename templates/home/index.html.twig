@@ -1,8 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+	<header class="d-flex justify-content-center align-items-center pb-3">
+		<img class="banner banner-head" src="{{ asset('build/images/pexels-fauxels-3182757.jpg') }}" alt="plusieurs personnes travaillant ensemble (photo de fauxels provenant de pexels">
+		<h1 class="justify-content-center">Chaises gaming série 2021++</h1>
+	</header>
 {% endblock %}
