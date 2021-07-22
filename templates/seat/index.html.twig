@@ -12,7 +12,7 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h2>La Sélection</h2>
+        <h2 class="mt-5">La Sélection</h2>
         <div class="row">
 	        {% for seat in seats %}
             <div class="col-sm-6 col-md-4 col-lg-3">
@@ -23,10 +23,10 @@
 				            <h3 class="card-title text-center">{{ seat.name }}</h5>
 			            </div>
 			            <ul class="list-group list-group-flush">
-				            <li class="list-group-item">{{ seat.size }}</li>
-				            <li class="list-group-item">{{ seat.weight }}Kg</li>
-				            <li class="list-group-item">{{ seat.density }}Kg/m3</li>
-				            <li class="list-group-item">{{ seat.price }}€</li>
+				            <li class="list-group-item">Dimension: {{ seat.size }}</li>
+				            <li class="list-group-item">Poids max:{{ seat.weight }}Kg</li>
+				            <li class="list-group-item">Densité de la mousse: {{ seat.density }}Kg/m3</li>
+				            <li class="list-group-item">Prix: {{ seat.price }}€</li>
 			            </ul>
 			            <div class="card-body">
 				            <p class="card-description text-dark">{{ seat.description }}</p>
