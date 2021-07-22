@@ -2,22 +2,35 @@
 
 namespace App\Controller;
 
+use App\Entity\SearchSeat;
 use App\Repository\SeatRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\SearchSeatType;
 
 class SeatController extends AbstractController
 {
     /**
      * @Route("/sièges", name="seat_list")
      */
-    public function index(SeatRepository $seatRepository): Response
+    public function index(SeatRepository $seatRepository, Request $request): Response
     {
-        $seats = $seatRepository->findall();
+        $searchSeat = new SearchSeat();
+        $form = $this->createForm(SearchSeatType::class, $searchSeat);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            //traitement
+            $seats = $seatRepository->findBySearch($searchSeat);
+        }
+
+        $seats = $seatRepository->findall();
         return $this->render('seat/index.html.twig', [
-            'seats' => $seats,
+            'seats' => $seats ?? $seatRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 

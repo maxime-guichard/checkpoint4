@@ -12,7 +12,16 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h2 class="mt-5">La Sélection</h2>
+        <h2 class="text-dark text-center mt-5">La Sélection</h2>
+        <h2 class="">Ma recherche</h2>
+            <div class="my-3 d-flex justify-content-center">
+                {{ form_start(form) }}
+                <div class="d-flex">
+                    {{ form_widget(form) }}
+                <button type"submit" class="btn btn-red mx-1">Rechercher</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
         <div class="row">
 	        {% for seat in seats %}
             <div class="col-sm-6 col-md-4 col-lg-3">
