@@ -16,11 +16,11 @@
         <div class="row">
 	        {% for seat in seats %}
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <a href="#">
+                <a href="{{ path('seat_show', {'id': seat.id}) }}">
 	    	        <div class="card">
-			            <img class="card-img-top" src="{{ seat.image }}" alt="Card image cap">
-			            <div class="card-body">
-				            <h3 class="card-title">{{ seat.name }}</h5>
+                    	<div class="card-body d-flex justify-content-center">
+			                <img class="card-img-top" src="{{ seat.image }}" alt="Card image cap">
+				            <h3 class="card-title text-center">{{ seat.name }}</h5>
 			            </div>
 			            <ul class="list-group list-group-flush">
 				            <li class="list-group-item">{{ seat.size }}</li>
