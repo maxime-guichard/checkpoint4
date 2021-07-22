@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Détail du siège
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('seat') }}
+{% endblock %}
+
+{% block body %}
+	<section class="container-fluid">
+		<div class="row">
+            <div class="col-8">
+			    <h2 class="text-dark">{{ seat.name }}</h2>
+            </div>
+            <div class="col-4 text-dark">{{ seat.price }}€
+            </div>
+		</div>
+		<div class="row mt-5">
+			<div class="pictures col-8">
+				<img class="w-50" src="{{ path('seat_show', {'id': seat.id}) }}"/>
+			</div>
+		</div>
+		<div class="row mt-5">
+			<h2>Description</h2>
+			<p class="text-dark">{{ seat.description }}</p>
+		</div>
+	</section>
+{% endblock %}
