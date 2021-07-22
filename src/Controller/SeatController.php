@@ -27,7 +27,7 @@ class SeatController extends AbstractController
             $seats = $seatRepository->findBySearch($searchSeat);
         }
 
-        $seats = $seatRepository->findall();
+        $seats = $seatRepository->findAll();
         return $this->render('seat/index.html.twig', [
             'seats' => $seats ?? $seatRepository->findAll(),
             'form' => $form->createView(),

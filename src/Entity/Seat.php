@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SeatRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,26 +20,36 @@ class Seat
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private string $size;
 
     /**
      * @ORM\Column(type="decimal", precision=9, scale=2)
+     * @Assert\NotBlank
+     * @Assert\Positive
      */
     private float $price;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private string $weight;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private string $density;
 
