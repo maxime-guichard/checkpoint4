@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\SearchSeat;
 use App\Entity\Seat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,6 +18,15 @@ class SeatRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Seat::class);
+    }
+
+    public function findBySearch(SearchSeat $searchSeat): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.name LIKE :name')
+            ->setParameter('name', '%' . $searchSeat->getName() . '%')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**
