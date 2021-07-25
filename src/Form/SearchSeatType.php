@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\SearchSeat;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
 class SearchSeatType extends AbstractType
 {
@@ -13,8 +16,9 @@ class SearchSeatType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('name')
-        ;
+            ->add('name', SearchType::class, [
+                'required' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
