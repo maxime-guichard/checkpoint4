@@ -1,22 +1,24 @@
 <nav class="navbar bg-dark navbar-dark navbar-expand-lg fixed-top pb-2">
-	<a href="{{ path('home') }}"><img src="{{ asset('build/images/secretlab.png') }}" alt="logo" class="navbar-logo mx-4 logo"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
-		<ul class="navbar-nav ml-auto text-center">
-			<li class="nav-item">
+	<div class="container-fluid">
+		<a href="{{ path('home') }}"><img src="{{ asset('build/images/secretlab.png') }}" alt="logo" class="navbar-logo mx-4 logo"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
+			<div class="navbar-nav">
 				<a class="nav-link" href="{{ path('home') }}">Accueil</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="{{ path('seat_list') }}">Siège</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="{{ path('techno') }}">Technologie</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="{{ path('contact') }}">Contact</a>
-			</li>
-		</ul>
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					Bienvenue
+					{{ app.user.firstname }}
+					!
+					<a class="nav-link btn btn-secondary" href="{{ path('app_logout') }}">Deconnexion</a>
+				{% else %}
+					<a class="nav-link btn btn-secondary" href="{{ path('app_login') }}">Se connecter</a>
+				{% endif %}
+			</div>
+		</div>
 	</div>
 </nav>
