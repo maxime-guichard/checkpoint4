@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block title %}Seat{% endblock %}
 
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ seat.image }}</td>
+                <td>{{ vich_uploader_asset(seat) }}</td>
             </tr>
         </tbody>
     </table>

@@ -14,7 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/seat")
- * @IsGranted("ROLE_ADMIN")
  */
 class SeatController extends AbstractController
 {
@@ -30,6 +29,7 @@ class SeatController extends AbstractController
 
     /**
      * @Route("/new", name="seat_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -63,6 +63,7 @@ class SeatController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="seat_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Seat $seat): Response
     {
@@ -83,6 +84,7 @@ class SeatController extends AbstractController
 
     /**
      * @Route("/{id}", name="seat_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Seat $seat): Response
     {

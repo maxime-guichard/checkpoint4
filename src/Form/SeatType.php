@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class SeatType extends AbstractType
 {
@@ -51,6 +52,11 @@ class SeatType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Coussin appui-tête: oui, ...'
                 ]
+            ])
+            ->add('imageFile', VichFileType::class, [
+                'label' => 'Image du siège',
+                'required' => false,
+                'download_uri' => false,
             ]);
     }
 
