@@ -98,7 +98,7 @@ class SecurityControllerAuthenticator extends AbstractFormLoginAuthenticator imp
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+        return new RedirectResponse($this->urlGenerator->generate('admin_home'));
         // throw new \Exception('valid redirect inside '.__FILE__);
     }
 

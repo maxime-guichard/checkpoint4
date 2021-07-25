@@ -2,46 +2,96 @@
 
 namespace App\Controller;
 
-use App\Entity\SearchSeat;
+use App\Entity\Seat;
+use App\Form\SeatType;
 use App\Repository\SeatRepository;
-use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\SearchSeatType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @Route("/seat")
+ * @IsGranted("ROLE_ADMIN")
+ */
 class SeatController extends AbstractController
 {
     /**
-     * @Route("/sièges", name="seat_list")
+     * @Route("/", name="seat_index", methods={"GET"})
      */
-    public function index(SeatRepository $seatRepository, Request $request): Response
+    public function index(SeatRepository $seatRepository): Response
     {
-        $searchSeat = new SearchSeat();
-        $form = $this->createForm(SearchSeatType::class, $searchSeat);
+        return $this->render('seat/index.html.twig', [
+            'seats' => $seatRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/new", name="seat_new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $seat = new Seat();
+        $form = $this->createForm(SeatType::class, $seat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //traitement
-            $seats = $seatRepository->findBySearch($searchSeat);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($seat);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('seat_index');
         }
 
-        $seats = $seatRepository->findAll();
-        return $this->render('seat/index.html.twig', [
-            'seats' => $seats ?? $seatRepository->findAll(),
+        return $this->render('seat/new.html.twig', [
+            'seat' => $seat,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/sièges/{id}", name="seat_show")
+     * @Route("/{id}", name="seat_show", methods={"GET"})
      */
-    public function show(int $id, SeatRepository $seatRepository): Response
+    public function show(Seat $seat): Response
     {
-        $seat = $seatRepository->find($id);
         return $this->render('seat/show.html.twig', [
             'seat' => $seat,
         ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="seat_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Seat $seat): Response
+    {
+        $form = $this->createForm(SeatType::class, $seat);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('seat_index');
+        }
+
+        return $this->render('seat/edit.html.twig', [
+            'seat' => $seat,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="seat_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Seat $seat): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $seat->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($seat);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('seat_index');
     }
 }

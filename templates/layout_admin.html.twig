@@ -6,6 +6,8 @@
 
 {% block stylesheets %}
 	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
+    {{ encore_entry_link_tags('seat') }}
 {% endblock %}
 {% block navbar %}
 	{% include 'component/_navbar_admin.html.twig' %}
