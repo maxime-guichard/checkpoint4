@@ -1,14 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{ parent() }}
-{% endblock %}
-
-{% block stylesheets %}
-	{{ parent() }}
-	{{ encore_entry_link_tags('home') }}
-    {{ encore_entry_link_tags('seat') }}
-{% endblock %}
 {% block navbar %}
 	{% include 'component/_navbar_admin.html.twig' %}
+{% endblock %}
+
+{% block footer %}
+	{% include 'component/_footer.html.twig' %}
 {% endblock %}

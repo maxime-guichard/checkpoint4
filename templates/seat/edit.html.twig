@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
-{% block title %}Edit Seat{% endblock %}
+{% block title %}Modifier un siège{% endblock %}
 
 {% block body %}
-    <h1>Edit Seat</h1>
+    <h1 class='text-center text-dark'>Modifier un siège</h1>
 
-    {{ include('seat/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('seat/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     <a href="{{ path('seat_index') }}">back to list</a>
 

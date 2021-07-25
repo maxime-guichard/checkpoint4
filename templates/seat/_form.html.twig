@@ -1,4 +1,32 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block body %}
+    <section class="container">
+        <div class="bg-light text-dark shadow p-3 mb-5 rounded form-group row mt-sm-0 px-xs-0 py-sm-0">
+            {{ form_start(form) }}
+            <div class="form-group pt-5 col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.size, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.weight, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.density, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group col col-lg-6 col-md-12 mx-auto">
+                {{ form_row(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group pb-5 col pt-5 col-lg-6 col-md-12 mx-auto">
+                <button class="btn btn-primary btn-lg w-100">{{ button_label|default('Ajouter') }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

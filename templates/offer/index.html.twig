@@ -19,7 +19,7 @@
                 <a href="{{ path('seat_show', {'id': seat.id}) }}">
 	    	        <div class="card">
                     	<div class="card-body d-flex justify-content-center">
-			                <img class="card-img-top" src="{{ seat.image }}" alt="Card image cap">
+			                <img class="card-img-top" src="{{ vich_uploader_asset(seat) }}" alt="Card image cap">
 				            <h3 class="card-title text-center">{{ seat.name }}</h5>
 			            </div>
 			            <ul class="list-group list-group-flush">
