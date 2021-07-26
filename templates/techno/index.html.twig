@@ -7,5 +7,53 @@
 
 {% block stylesheets %}
 	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
 	{{ encore_entry_link_tags('seat') }}
+{% endblock %}
+
+{% block body %}
+	<header class="d-flex justify-content-center align-items-center">
+		<img class="banner banner-head" src="{{ asset('build/images/techno.png') }}" alt="sièges gaming">
+	</header>
+
+	<div class="container">
+		<h2 class="m-3 d-flex justify-content-center pt-5">Les techologies</h2>
+		<div class="row mb-4 mb-lg-5">
+			<div class="col-5 mb-lg-3 align-self-center">
+				<h2 class="m-3 d-flex justify-content-center pt-5">L'ingéniérie au service du confort</h2>
+			</div>
+			<div class="col-12 col-lg-7 mb-lg-3 ps-lg-5">
+				<p>
+					Chaque chaise commence sa vie dans un laboratoire interne et avec des installations d'essai.
+																									                    La conception, les tests et chaque aspect des chaises pour s'assurer qu'elles sont plus
+																									                    confortables et plus robustes que jamais. Chaque détail compte, jusqu'à la façon dont les
+																									                    panneaux de rembourrage individuel sont cousus  ensemble. Les ingénieurs mènent des programmes de recherche
+																									                    approfondis pour comprendre comment les gens interagissent avec nos chaises, afin de
+																									                    les optimiser pour un meilleur soutien ergonomique.
+				</p>
+			</div>
+		</div>
+		<h2 class="m-3 d-flex justify-content-center">Les chaises de demain, aujourd'hui</h2>
+		<div class="row">
+			<div class="col-12 col-lg-7 pe-lg-5">
+				<p>
+					<div>
+						Notre position de leader du marché signifie que les économies
+																														                        d'échelle nous permettent d'accéder à des technologies de fabrication
+																														                        de pointe pour réaliser des conceptions avancées, fabriquer des
+																														                        matériaux sur mesure de qualité supérieure et concevoir pour le bien-
+																														                        être et l'expérience de nos utilisateurs. Au fil des ans, nous avons
+																														                        investi des millions dans la recherche et le développement pour améliorer chaque chaise et
+																														                        bureau que nous fabriquons. Une ingénierie de pointe nous permet
+																														                        une échelle incroyable pour répondre aux commentaires
+																														                        ergonomiques de nos clients - plus d'un million d'entre eux dans le
+																														                        monde.
+					</div>
+				</p>
+			</div>
+			<div class="col-lg-5 align-self-center">
+				<img class="d-none d-lg-block img-fluid rounded shadow-lg" src="{{ asset('build/images/meet.png') }}" alt="Trois personnes observent le même écran d'ordinateur">
+			</div>
+		</div>
+	</div>
 {% endblock %}
