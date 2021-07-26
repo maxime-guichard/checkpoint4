@@ -35,7 +35,7 @@
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							Bienvenue
 																						!
-							<a class="text-white border border-white text-decoration-none mx-5 rounded-2 foot-link" href="{{ path('app_logout') }}">Deconnexion</a>
+							<a class="bg-danger text-white border border-white text-decoration-none mx-5 rounded-2 foot-link" href="{{ path('app_logout') }}">Deconnexion</a>
 						{% else %}
 							<a class="text-white border border-white text-decoration-none mx-5 rounded-2 foot-link" href="{{ path('app_login') }}">Se connecter</a>
 						{% endif %}

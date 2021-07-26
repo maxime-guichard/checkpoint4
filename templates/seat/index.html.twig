@@ -7,12 +7,12 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{{ encore_entry_link_tags('home') }}
-    {{ encore_entry_link_tags('seat') }}
+	{{ encore_entry_link_tags('seat') }}
 {% endblock %}
 
 {% block body %}
 	<div class="container-fluid">
-		<h2 class="text-dark text-center mt-5">La Sélection</h2>
+		<h2 class="text-center pt-3 mb-3">La Sélection</h2>
 		<div class="row">
 			{% for seat in seats %}
 				<div class="col-sm-6 col-md-4 col-lg-3">
@@ -34,10 +34,10 @@
 							<div class="card-body">
 								<p class="card-description text-dark">{{ seat.description }}</p>
 							</div>
-							<form method="post" action="{{ path('seat_delete', {'id': seat.id}) }}" onsubmit="return confirm('Êtes-vous sûr vouloir supprimer cet élément');">
-								<a class="btn-info"href="{{ path('seat_edit', {'id': seat.id}) }}">Modifier</a>
+							<form method="post" action="{{ path('seat_delete', {'id': seat.id}) }}" onsubmit="return confirm('Êtes-vous sûr vouloir supprimer cet élément');" class="post d-flex justify-content-center w-100 pb-2">
+								<a class="delete bg-info btn mx-3 text-center h-100 w-50 align-items-center btn-sm" href="{{ path('seat_edit', {'id': seat.id}) }}">Modifier</a>
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ seat.id) }}">
-								<button class="btn-danger">Supprimer</button>
+								<button class="delete bg-danger btn mx-3 text-center h-100 w-50 align-items-center btn-sm">Supprimer</button>
 							</form>
 						</div>
 					</a>
@@ -45,6 +45,7 @@
 			{% else %}
 				Pas de résultat à la recherche
 			{% endfor %}
+			<a href="{{ path('seat_new') }}" class="post mt-3 d-flex justify-content-center">Ajouter</a>
 		</div>
 	</div>
 {% endblock %}
