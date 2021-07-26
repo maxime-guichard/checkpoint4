@@ -7,20 +7,23 @@
 
 {% block stylesheets %}
 	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
 	{{ encore_entry_link_tags('seat') }}
 {% endblock %}
 
 {% block body %}
 	<div class="container-fluid">
-		<h2 class="text-dark text-center my-5">La Sélection</h2>
-		<h2 class="texte-dark">Ma recherche</h2>
-		<div class="my-3 d-flex justify-content-center">
-			{{ form_start(form) }}
-			<div class="d-flex">
-				{{ form_widget(form) }}
-				<button type"submit" class="btn btn-danger mx-1">Rechercher</button>
+		<h2 class="text-center mt-5 mb-3">La Sélection</h2>
+		<div class="container">
+			<div class="d-flex mb-3 justify-content-center">
+				{{ form_start(form, {'attr': {'class': 'text-center'}}) }}
+				{{ form_label(form.name) }}
+				<div class="d-flex mb-1 justify-content-center">
+					{{ form_widget(form.name) }}
+					<button class="filter btn btn-danger btn-lg mx-1">Filtrer</button>
+				</div>
+				{{ form_end(form) }}
 			</div>
-			{{ form_end(form) }}
 		</div>
 		<div class="row">
 			{% for seat in seats %}

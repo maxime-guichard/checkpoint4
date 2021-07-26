@@ -18,6 +18,10 @@ class SearchSeatType extends AbstractType
             ->setMethod('GET')
             ->add('name', SearchType::class, [
                 'required' => false,
+                'label' => 'Marque',
+                'attr' => [
+                    'placeholder' => 'Corsair, Azguenon, ...'
+                ]
             ]);
     }
 
